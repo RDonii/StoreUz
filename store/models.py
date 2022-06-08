@@ -1,7 +1,12 @@
 from django.db import models
 
+class Promotion(models.Model):
+    description = models.CharField(max_length=255)
+    discount = models.FloatField()
+
 class Collection(models.Model):
     title = models.CharField(max_length=255)
+    featured_product = models.ForeignKey(to='Product', on_delete=models.SET_NULL, related_name='+')
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
@@ -10,6 +15,7 @@ class Product(models.Model):
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now=True)
     collection = models.ForeignKey(to=Collection, on_delete=models.PROTECT)
+    promotions = models.ManyToManyField(to=Promotion)
 
 class Customer(models.Model):
     MEMBERSHIP_BRONZE = 'B'
