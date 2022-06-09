@@ -8,5 +8,17 @@
 </head>
 <body>
     <h1>It is working...</h1>
+    <hr>
+    <h2>Your quert:</h2>
+    <ol>
+        <li>
+            <h4>Customers</h4>
+            <ul>
+                {% for customer in customers %}
+                    <li>{{customer}}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ol>
 </body>
 </html>
