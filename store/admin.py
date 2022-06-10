@@ -1,5 +1,4 @@
 from django.contrib import admin, messages
-from django.contrib.contenttypes.admin import GenericTabularInline
 from django.utils.html import format_html, urlencode
 from django.urls import reverse
 from . import models
@@ -31,12 +30,6 @@ class OrderItemInline(admin.TabularInline):
     extra = 0
 
 
-class TagItemInline(GenericTabularInline):
-    model = TaggedItem
-    autocomplete_fields = ['tag']
-    extra = 0
-
-
 #Models
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -48,7 +41,6 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     autocomplete_fields = ['collection']
     search_fields = ['title']
-    inlines = [TagItemInline]
 
 
     @admin.display(ordering='collection')
