@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 
 class Promotion(models.Model):
     description = models.CharField(max_length=255)
@@ -18,7 +19,7 @@ class Product(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField()
     description = models.TextField()
-    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
+    unit_price = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(1)])
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now=True)
     collection = models.ForeignKey(to=Collection, on_delete=models.PROTECT)
@@ -47,15 +48,17 @@ class Customer(models.Model):
     birth_date = models.DateField(null=True)
     membership = models.CharField(max_length=1, choices=MEMBERSHIP_CHOICES, default=MEMBERSHIP_BRONZE)
 
+    def __str__(self) -> str:
+        return f'{self.first_name} {self.last_name}'
 
 class Order(models.Model):
     PAYMENT_STATUS_PENDING = 'P'
     PAYMENT_STATUS_COMPLETE = 'C'
     PAYMENT_STATUS_FAILED = 'F'
     PAYMENT_STATUS_CHOICES = [
-        (PAYMENT_STATUS_PENDING, 'P'),
-        (PAYMENT_STATUS_COMPLETE, 'C'),
-        (PAYMENT_STATUS_FAILED, 'F'),
+        (PAYMENT_STATUS_PENDING, 'Pending'),
+        (PAYMENT_STATUS_COMPLETE, 'Completed'),
+        (PAYMENT_STATUS_FAILED, 'Failed'),
     ]
 
     placed_at = models.DateTimeField(auto_now_add=True)
