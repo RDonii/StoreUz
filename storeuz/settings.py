@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "store_custom",
     "tags",
     "likes",
+    "django_filters"
 ]
 
 INTERNAL_IPS = [
