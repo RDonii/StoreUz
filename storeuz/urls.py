@@ -23,5 +23,6 @@ urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
+    path('store/', include('store.urls')),
     path('', include('playground.urls'))
 ]
