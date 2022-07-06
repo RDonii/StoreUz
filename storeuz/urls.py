@@ -20,7 +20,7 @@ admin.site.site_header = 'Storeuz Admin'
 admin.site.index_title = 'Admin'
 
 urlpatterns = [
-    path('jet/', include('jet.urls', 'jet')),
+    # path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
     path('store/', include('store.urls')),
