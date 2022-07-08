@@ -19,3 +19,6 @@ venv.bak/
 
 # celery beat schedule file
 celerybeat-schedule
+
+#others
+token.txt

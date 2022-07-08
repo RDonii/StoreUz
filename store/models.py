@@ -75,7 +75,7 @@ class Order(models.Model):
     customer = models.ForeignKey(to=Customer, on_delete=models.PROTECT)
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(to=Order, on_delete=models.PROTECT)
+    order = models.ForeignKey(to=Order, on_delete=models.PROTECT, related_name='items')
     product = models.ForeignKey(to=Product, on_delete=models.PROTECT, related_name='orderitem')
     quantity = models.PositiveSmallIntegerField()
     unit_price = models.DecimalField(max_digits=6, decimal_places=2)
