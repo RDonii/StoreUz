@@ -20,6 +20,11 @@ venv.bak/
 # celery beat schedule file
 celerybeat-schedule
 
+# Node
+*/node_modules
+*/.cache
+
 #others
 token.txt
 *.vscode
+media/
